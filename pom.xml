@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.kandopeldamysqljavafx/org.example.kandopeldamysqljavafx.HelloApplication
+                                org.example.kandopeldamysqljavafx/org.example.kandopeldamysqljavafx.DogsOwnersApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
