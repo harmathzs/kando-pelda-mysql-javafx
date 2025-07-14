@@ -38,6 +38,12 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -61,7 +67,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.kandopeldamysqljavafx/org.example.kandopeldamysqljavafx.HelloApplication
+                                org.example.kandopeldamysqljavafx/org.example.kandopeldamysqljavafx.DogsOwnersApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

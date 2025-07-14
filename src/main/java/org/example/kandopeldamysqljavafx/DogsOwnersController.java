@@ -3,7 +3,7 @@ package org.example.kandopeldamysqljavafx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class DogsOwnersController {
     @FXML
     private Label welcomeText;
 
