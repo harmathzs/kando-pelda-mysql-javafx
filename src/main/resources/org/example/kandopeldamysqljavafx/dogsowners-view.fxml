@@ -14,17 +14,20 @@
             <VBox prefHeight="200.0" prefWidth="350.0">
                <children>
                   <Label text="Dogs list" />
-                  <TableView id="dogsTableView" prefHeight="350.0" prefWidth="200.0">
+                  <TableView id="dogsTableView" fx:id="dogsTableView" prefHeight="350.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="30.0" text="Id" />
+                      <TableColumn prefWidth="75.0" text="Name" />
+                        <TableColumn prefWidth="30.0" text="Age" />
+                        <TableColumn prefWidth="75.0" text="Male" />
+                        <TableColumn prefWidth="75.0" text="OwnerId" />
                     </columns>
                   </TableView>
                   <Label text="Owners list" />
-                  <TableView id="ownersTableView" prefHeight="350.0" prefWidth="200.0">
+                  <TableView id="ownersTableView" fx:id="ownersTableView" prefHeight="350.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="75.0" text="Id" />
+                      <TableColumn prefWidth="75.0" text="Name" />
                     </columns>
                   </TableView>
                </children>
@@ -53,11 +56,11 @@
                         <Label text="age:" GridPane.rowIndex="2" />
                         <Label text="male:" GridPane.rowIndex="3" />
                         <Label text="ownerId:" GridPane.rowIndex="4" />
-                        <Spinner GridPane.columnIndex="1" />
-                        <Spinner GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Spinner id="dogIdSpinner" fx:id="dogIdSpinner" editable="true" prefWidth="160.0" GridPane.columnIndex="1" />
+                        <TextField id="dogNameTextField" fx:id="dogNameTextField" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner id="dogAgeSpinner" fx:id="dogAgeSpinner" editable="true" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox id="dogMaleChoiceBox" fx:id="dogMaleChoiceBox" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                         <Spinner id="dogOwneridSpinner" fx:id="dogOwneridSpinner" editable="true" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <Label text="Owner fields" />
@@ -73,8 +76,8 @@
                      <children>
                         <Label text="id:" />
                         <Label text="name:" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner editable="true" GridPane.columnIndex="1" />
+                         <Spinner id="ownerIdSpinner" fx:id="ownerIdSpinner" editable="true" prefWidth="160.0" GridPane.columnIndex="1" />
+                        <TextField id="ownerNameTextField" fx:id="ownerNameTextField" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -87,31 +90,31 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" text="1. Insert new Owner">
+                  <Button mnemonicParsing="false" onAction="#onButton1Click" text="1. Insert new Owner">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="2. Insert new Dog">
+                  <Button mnemonicParsing="false" onAction="#onButton2Click" text="2. Insert new Dog">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="3. Update existing Owner">
+                  <Button mnemonicParsing="false" onAction="#onButton3Click" text="3. Update existing Owner">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="4. Update existing Dog">
+                  <Button mnemonicParsing="false" onAction="#onButton4Click" text="4. Update existing Dog">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="5. Delete existing Owner">
+                  <Button mnemonicParsing="false" onAction="#onButton5Click" text="5. Delete existing Owner">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="6. Delete existing Dog">
+                  <Button mnemonicParsing="false" onAction="#onButton6Click" text="6. Delete existing Dog">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="7. Exit program">
+                  <Button mnemonicParsing="false" onAction="#onButton7Click" text="7. Exit program">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Button>
