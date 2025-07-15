@@ -11,7 +11,7 @@ public class DogsOwnersApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DogsOwnersApplication.class.getResource("dogsowners-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         stage.setTitle("Dogs and Owners!");
         stage.setScene(scene);
         stage.show();
