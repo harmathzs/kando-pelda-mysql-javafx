@@ -16,18 +16,18 @@
                   <Label text="Dogs list" />
                   <TableView id="dogsTableView" fx:id="dogsTableView" prefHeight="350.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="30.0" text="Id" />
-                      <TableColumn prefWidth="75.0" text="Name" />
-                        <TableColumn prefWidth="30.0" text="Age" />
-                        <TableColumn prefWidth="75.0" text="Male" />
-                        <TableColumn prefWidth="75.0" text="OwnerId" />
+                      <TableColumn prefWidth="30.0" text="Id" fx:id="dogIdTableColumn" />
+                      <TableColumn prefWidth="75.0" text="Name" fx:id="dogNameTableColumn" />
+                        <TableColumn prefWidth="30.0" text="Age" fx:id="dogAgeTableColumn" />
+                        <TableColumn prefWidth="75.0" text="Male" fx:id="dogMaleTableColumn" />
+                        <TableColumn prefWidth="75.0" text="OwnerId" fx:id="dogOwneridTableColumn" />
                     </columns>
                   </TableView>
                   <Label text="Owners list" />
                   <TableView id="ownersTableView" fx:id="ownersTableView" prefHeight="350.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Id" />
-                      <TableColumn prefWidth="75.0" text="Name" />
+                      <TableColumn prefWidth="75.0" text="Id" fx:id="owneridTableColumn" />
+                      <TableColumn prefWidth="75.0" text="Name" fx:id="ownerNameTableColumn" />
                     </columns>
                   </TableView>
                </children>
