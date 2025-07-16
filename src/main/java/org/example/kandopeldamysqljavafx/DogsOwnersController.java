@@ -26,9 +26,9 @@ public class DogsOwnersController implements Initializable {
     @FXML public TableColumn<Dog, Float> dogAgeTableColumn;
     @FXML public TableColumn<Dog, Boolean> dogMaleTableColumn;
     @FXML public TableColumn<Dog, Integer> dogOwneridTableColumn;
-    @FXML public TableView ownersTableView;
-    @FXML public TableColumn owneridTableColumn;
-    @FXML public TableColumn ownerNameTableColumn;
+    @FXML public TableView<Owner> ownersTableView;
+    @FXML public TableColumn<Owner, Integer> owneridTableColumn;
+    @FXML public TableColumn<Owner, String> ownerNameTableColumn;
     @FXML public Spinner dogIdSpinner;
     @FXML public TextField dogNameTextField;
     @FXML public Spinner dogAgeSpinner;
@@ -59,6 +59,12 @@ public class DogsOwnersController implements Initializable {
         List<Dog> dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
         ObservableList<Dog> dogList = FXCollections.observableArrayList(dogs);
         dogsTableView.setItems(dogList);
+        // Init ownersTableView
+        owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        List<Owner> owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
+        ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
+        ownersTableView.setItems(ownerList);
 
         // Init dogMaleChoiceBox options
         ObservableList<String> dogMaleChoiceBoxObservableList = FXCollections.observableArrayList(Arrays.asList("female", "male"));
