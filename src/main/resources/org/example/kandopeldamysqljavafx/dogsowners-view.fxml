@@ -63,6 +63,7 @@
                          <Spinner id="dogOwneridSpinner" fx:id="dogOwneridSpinner" editable="true" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
+                  <Separator prefWidth="200.0" />
                   <Label text="Owner fields" />
                   <GridPane>
                     <columnConstraints>
