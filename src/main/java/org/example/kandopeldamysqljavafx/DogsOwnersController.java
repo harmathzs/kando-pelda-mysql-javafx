@@ -120,7 +120,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton2Click() {
+    public void onButton2Click() {
         // 2. Insert new Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
@@ -141,7 +141,7 @@ public class DogsOwnersController implements Initializable {
 
     }
     @FXML
-    protected void onButton3Click() {
+    public void onButton3Click() {
         // 3. Update existing Owner
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
         String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
@@ -152,7 +152,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton4Click() {
+    public void onButton4Click() {
         // 4. Update existing Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
@@ -172,7 +172,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton5Click() {
+    public void onButton5Click() {
         // 5. Delete existing Owner
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
         MysqlService.deleteOwners("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(ownerId)));
@@ -181,7 +181,7 @@ public class DogsOwnersController implements Initializable {
 
     }
     @FXML
-    protected void onButton6Click() {
+    public void onButton6Click() {
         // 6. Delete existing Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         MysqlService.deleteDogs("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(dogId)));
@@ -189,7 +189,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton7Click() {
+    public void onButton7Click() {
         // 7. Exit program
         Platform.exit();
     }
