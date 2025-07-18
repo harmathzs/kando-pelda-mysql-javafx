@@ -123,6 +123,13 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton3Click() {
         // 3. Update existing Owner
+        Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
+        String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
+        Owner[] owners = new Owner[1];
+        owners[0] = new Owner(ownerId, ownerName);
+        MysqlService.upsertOwners("localhost", "dogs_and_owners", "root", "", owners);
+
+        refreshTables();
     }
     @FXML
     protected void onButton4Click() {
