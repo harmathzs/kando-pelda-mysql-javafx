@@ -29,12 +29,12 @@ public class DogsOwnersController implements Initializable {
     @FXML public TableView<Owner> ownersTableView;
     @FXML public TableColumn<Owner, Integer> owneridTableColumn;
     @FXML public TableColumn<Owner, String> ownerNameTableColumn;
-    @FXML public Spinner dogIdSpinner;
+    @FXML public Spinner<Integer> dogIdSpinner;
     @FXML public TextField dogNameTextField;
-    @FXML public Spinner dogAgeSpinner;
+    @FXML public Spinner<Integer> dogAgeSpinner;
     @FXML public ChoiceBox dogMaleChoiceBox;
-    @FXML public Spinner dogOwneridSpinner;
-    @FXML public Spinner ownerIdSpinner;
+    @FXML public Spinner<Integer> dogOwneridSpinner;
+    @FXML public Spinner<Integer> ownerIdSpinner;
     @FXML public TextField ownerNameTextField;
 
 
@@ -66,9 +66,28 @@ public class DogsOwnersController implements Initializable {
         ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
         ownersTableView.setItems(ownerList);
 
+        // Init dogIdSpinner
+        dogIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+
+        // Init dogNameTextField
+        dogNameTextField.setText("Fido");
+
+        // Init dogAgeSpinner
+        dogAgeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1, 1)); // min, max, init, step
+
         // Init dogMaleChoiceBox options
         ObservableList<String> dogMaleChoiceBoxObservableList = FXCollections.observableArrayList(Arrays.asList("female", "male"));
         dogMaleChoiceBox.setItems(dogMaleChoiceBoxObservableList);
+        dogMaleChoiceBox.setValue("male");
+
+        // Init dogOwneridSpinner
+        dogOwneridSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+
+        // Init ownerIdSpinner
+        ownerIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+
+        // Init ownerNameTextField
+        ownerNameTextField.setText("Jane Doe");
     }
 
     @FXML
