@@ -104,8 +104,8 @@ public class DogsOwnersController implements Initializable {
     }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void onHelloButtonClick() {
+        // welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     @FXML
