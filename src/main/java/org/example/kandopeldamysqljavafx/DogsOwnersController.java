@@ -167,6 +167,10 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton6Click() {
         // 6. Delete existing Dog
+        Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
+        MysqlService.deleteDogs("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(dogId)));
+
+        refreshTables();
     }
     @FXML
     protected void onButton7Click() {
