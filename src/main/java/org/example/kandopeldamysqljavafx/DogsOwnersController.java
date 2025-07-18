@@ -56,37 +56,37 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
 
         // Init dogIdSpinner
-        dogIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+        if (!isRunningTest) dogIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
 
         // Init dogNameTextField
-        dogNameTextField.setText("Fido");
+        if (!isRunningTest) dogNameTextField.setText("Fido");
 
         // Init dogAgeSpinner
-        dogAgeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1, 1)); // min, max, init, step
+        if (!isRunningTest) dogAgeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1, 1)); // min, max, init, step
 
         // Init dogMaleChoiceBox options
         ObservableList<String> dogMaleChoiceBoxObservableList = FXCollections.observableArrayList(Arrays.asList("female", "male"));
-        dogMaleChoiceBox.setItems(dogMaleChoiceBoxObservableList);
-        dogMaleChoiceBox.setValue("male");
+        if (!isRunningTest) dogMaleChoiceBox.setItems(dogMaleChoiceBoxObservableList);
+        if (!isRunningTest) dogMaleChoiceBox.setValue("male");
 
         // Init dogOwneridSpinner
-        dogOwneridSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+        if (!isRunningTest) dogOwneridSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
 
         // Init ownerIdSpinner
-        ownerIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
+        if (!isRunningTest) ownerIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
 
         // Init ownerNameTextField
-        ownerNameTextField.setText("Jane Doe");
+        if (!isRunningTest) ownerNameTextField.setText("Jane Doe");
     }
 
     public void refreshTables() {
         // Init dogsTableView
-        dogIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        dogNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        dogAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-        dogMaleTableColumn.setCellValueFactory(new PropertyValueFactory<>("male"));
+        if (!isRunningTest) dogIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if (!isRunningTest) dogNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        if (!isRunningTest) dogAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        if (!isRunningTest) dogMaleTableColumn.setCellValueFactory(new PropertyValueFactory<>("male"));
         //dogOwneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("ownerid"));
-        dogOwneridTableColumn.setCellValueFactory(cellData -> {
+        if (!isRunningTest) dogOwneridTableColumn.setCellValueFactory(cellData -> {
             Owner owner = cellData.getValue().getOwner();
             Integer ownerId = cellData.getValue().getId();
             String ownerName = (owner != null) ? owner.getName() : "";
@@ -94,22 +94,22 @@ public class DogsOwnersController implements Initializable {
         });
         dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
         ObservableList<Dog> dogList = FXCollections.observableArrayList(dogs);
-        dogsTableView.setItems(dogList);
+        if (!isRunningTest) dogsTableView.setItems(dogList);
         // Init ownersTableView
-        owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        if (!isRunningTest) owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if (!isRunningTest) ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
         ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
-        ownersTableView.setItems(ownerList);
+        if (!isRunningTest) ownersTableView.setItems(ownerList);
     }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void onHelloButtonClick() {
+        // welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     @FXML
-    protected void onButton1Click() {
+    public void onButton1Click() {
         // 1. Insert new Owner
         String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
@@ -120,7 +120,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton2Click() {
+    public void onButton2Click() {
         // 2. Insert new Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
@@ -141,7 +141,7 @@ public class DogsOwnersController implements Initializable {
 
     }
     @FXML
-    protected void onButton3Click() {
+    public void onButton3Click() {
         // 3. Update existing Owner
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
         String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
@@ -152,7 +152,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton4Click() {
+    public void onButton4Click() {
         // 4. Update existing Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
@@ -172,7 +172,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton5Click() {
+    public void onButton5Click() {
         // 5. Delete existing Owner
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
         MysqlService.deleteOwners("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(ownerId)));
@@ -181,7 +181,7 @@ public class DogsOwnersController implements Initializable {
 
     }
     @FXML
-    protected void onButton6Click() {
+    public void onButton6Click() {
         // 6. Delete existing Dog
         Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
         MysqlService.deleteDogs("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(dogId)));
@@ -189,7 +189,7 @@ public class DogsOwnersController implements Initializable {
         refreshTables();
     }
     @FXML
-    protected void onButton7Click() {
+    public void onButton7Click() {
         // 7. Exit program
         Platform.exit();
     }
