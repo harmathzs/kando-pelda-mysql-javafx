@@ -1,5 +1,7 @@
-package org.example.kandopeldamysqljavafx;
-
+import org.example.kandopeldamysqljavafx.Credentials;
+import org.example.kandopeldamysqljavafx.Dog;
+import org.example.kandopeldamysqljavafx.MysqlService;
+import org.example.kandopeldamysqljavafx.Owner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.BeforeClass;

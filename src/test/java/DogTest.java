@@ -1,5 +1,4 @@
-package org.example.kandopeldamysqljavafx;
-
+import org.example.kandopeldamysqljavafx.Dog;
 import org.junit.Assert;
 import org.junit.Test;
 
