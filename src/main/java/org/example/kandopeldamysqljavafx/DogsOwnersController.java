@@ -109,7 +109,7 @@ public class DogsOwnersController implements Initializable {
     }
 
     @FXML
-    protected void onButton1Click() {
+    public void onButton1Click() {
         // 1. Insert new Owner
         String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
         Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
