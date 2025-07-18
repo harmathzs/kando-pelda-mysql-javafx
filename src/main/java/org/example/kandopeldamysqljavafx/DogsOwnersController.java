@@ -97,30 +97,31 @@ public class DogsOwnersController implements Initializable {
 
     @FXML
     protected void onButton1Click() {
-        //
+        // 1. Insert new Owner
     }
     @FXML
     protected void onButton2Click() {
-        //
+        // 2. Insert new Dog
     }
     @FXML
     protected void onButton3Click() {
-        //
+        // 3. Update existing Owner
     }
     @FXML
     protected void onButton4Click() {
-        //
+        // 4. Update existing Dog
     }
     @FXML
     protected void onButton5Click() {
-        //
+        // 5. Delete existing Owner
     }
     @FXML
     protected void onButton6Click() {
-        //
+        // 6. Delete existing Dog
     }
     @FXML
     protected void onButton7Click() {
+        // 7. Exit program
         Platform.exit();
     }
 
