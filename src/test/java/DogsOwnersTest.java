@@ -12,4 +12,12 @@ public class DogsOwnersTest {
         DogsOwnersController controller = new DogsOwnersController();
         controller.onHelloButtonClick();
     }
+
+    @Test
+    public void testinitialize() {
+        DogsOwnersController controller = new DogsOwnersController();
+        controller.isRunningTest = true;
+        controller.initialize(null, null);
+        controller.isRunningTest = false;
+    }
 }
