@@ -25,6 +25,9 @@ public class DogsOwnersController implements Initializable {
     float testDogAge = 1;
     boolean testDogMale = false;
 
+    public List<Dog> dogs;
+    public List<Owner> owners;
+
     @FXML public VBox mainWindow;
     @FXML public TableView<Dog> dogsTableView;
     @FXML public TableColumn<Dog, Integer> dogIdTableColumn;
@@ -89,13 +92,13 @@ public class DogsOwnersController implements Initializable {
             String ownerName = (owner != null) ? owner.getName() : "";
             return new SimpleObjectProperty<>(ownerId);
         });
-        List<Dog> dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
+        dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
         ObservableList<Dog> dogList = FXCollections.observableArrayList(dogs);
         dogsTableView.setItems(dogList);
         // Init ownersTableView
         owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        List<Owner> owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
+        owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
         ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
         ownersTableView.setItems(ownerList);
     }
@@ -119,6 +122,23 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton2Click() {
         // 2. Insert new Dog
+        Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
+        String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
+        float dogAge = isRunningTest ? testDogAge : dogAgeSpinner.getValue();
+        boolean dogMale = isRunningTest ? testDogMale : dogMaleChoiceBox.getValue()=="male";
+        Integer ownerId = isRunningTest ? testOwnerId : dogOwneridSpinner.getValue();
+        Owner dogOwner = null;
+        for (Owner owner: owners) {
+            if (Objects.equals(owner.getId(), ownerId)) {
+                dogOwner = owner;
+            }
+        }
+        Dog[] dogs = new Dog[1];
+        dogs[0] = new Dog(dogId, dogName, dogAge, dogMale, dogOwner);
+        MysqlService.upsertDogs("localhost", "dogs_and_owners", "root", "", dogs);
+
+        refreshTables();
+
     }
     @FXML
     protected void onButton3Click() {
