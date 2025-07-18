@@ -154,6 +154,22 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton4Click() {
         // 4. Update existing Dog
+        Integer dogId = isRunningTest ? testDogId : dogIdSpinner.getValue();
+        String dogName = isRunningTest ? testDogName : dogNameTextField.getText();
+        float dogAge = isRunningTest ? testDogAge : dogAgeSpinner.getValue();
+        boolean dogMale = isRunningTest ? testDogMale : dogMaleChoiceBox.getValue()=="male";
+        Integer ownerId = isRunningTest ? testOwnerId : dogOwneridSpinner.getValue();
+        Owner dogOwner = null;
+        for (Owner owner: owners) {
+            if (Objects.equals(owner.getId(), ownerId)) {
+                dogOwner = owner;
+            }
+        }
+        Dog[] dogs = new Dog[1];
+        dogs[0] = new Dog(dogId, dogName, dogAge, dogMale, dogOwner);
+        MysqlService.upsertDogs("localhost", "dogs_and_owners", "root", "", dogs);
+
+        refreshTables();
     }
     @FXML
     protected void onButton5Click() {
