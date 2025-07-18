@@ -13,10 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DogsOwnersController implements Initializable {
     public boolean isRunningTest = false;
@@ -134,6 +131,11 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton5Click() {
         // 5. Delete existing Owner
+        Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
+        MysqlService.deleteOwners("localhost", "dogs_and_owners", "root", "", new HashSet<>(List.of(ownerId)));
+
+        refreshTables();
+
     }
     @FXML
     protected void onButton6Click() {
