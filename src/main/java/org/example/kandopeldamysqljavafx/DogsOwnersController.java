@@ -19,6 +19,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DogsOwnersController implements Initializable {
+    public boolean isRunningTest = false;
+
+    int testOwnerId = 1;
+    String testOwnerName = "Jane Doe";
+    int testDogId = 1;
+    String testDogName = "Fido";
+    float testDogAge = 1;
+    boolean testDogMale = false;
+
     @FXML public VBox mainWindow;
     @FXML public TableView<Dog> dogsTableView;
     @FXML public TableColumn<Dog, Integer> dogIdTableColumn;
@@ -44,27 +53,7 @@ public class DogsOwnersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Init dogsTableView
-        dogIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        dogNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        dogAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-        dogMaleTableColumn.setCellValueFactory(new PropertyValueFactory<>("male"));
-        //dogOwneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("ownerid"));
-        dogOwneridTableColumn.setCellValueFactory(cellData -> {
-            Owner owner = cellData.getValue().getOwner();
-            Integer ownerId = cellData.getValue().getId();
-            String ownerName = (owner != null) ? owner.getName() : "";
-            return new SimpleObjectProperty<>(ownerId);
-        });
-        List<Dog> dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
-        ObservableList<Dog> dogList = FXCollections.observableArrayList(dogs);
-        dogsTableView.setItems(dogList);
-        // Init ownersTableView
-        owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        List<Owner> owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
-        ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
-        ownersTableView.setItems(ownerList);
+        refreshTables();
 
         // Init dogIdSpinner
         dogIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200, 1, 1)); // min, max, init, step
@@ -90,6 +79,30 @@ public class DogsOwnersController implements Initializable {
         ownerNameTextField.setText("Jane Doe");
     }
 
+    public void refreshTables() {
+        // Init dogsTableView
+        dogIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        dogNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        dogAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        dogMaleTableColumn.setCellValueFactory(new PropertyValueFactory<>("male"));
+        //dogOwneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("ownerid"));
+        dogOwneridTableColumn.setCellValueFactory(cellData -> {
+            Owner owner = cellData.getValue().getOwner();
+            Integer ownerId = cellData.getValue().getId();
+            String ownerName = (owner != null) ? owner.getName() : "";
+            return new SimpleObjectProperty<>(ownerId);
+        });
+        List<Dog> dogs = MysqlService.queryDogs("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
+        ObservableList<Dog> dogList = FXCollections.observableArrayList(dogs);
+        dogsTableView.setItems(dogList);
+        // Init ownersTableView
+        owneridTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ownerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        List<Owner> owners = MysqlService.queryOwners("localhost", "dogs_and_owners", "root", "", Collections.emptySet());
+        ObservableList<Owner> ownerList = FXCollections.observableArrayList(owners);
+        ownersTableView.setItems(ownerList);
+    }
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -98,6 +111,13 @@ public class DogsOwnersController implements Initializable {
     @FXML
     protected void onButton1Click() {
         // 1. Insert new Owner
+        String ownerName = isRunningTest ? testOwnerName : ownerNameTextField.getText();
+        Integer ownerId = isRunningTest ? testOwnerId : ownerIdSpinner.getValue();
+        Owner[] owners = new Owner[1];
+        owners[0] = new Owner(ownerId, ownerName);
+        MysqlService.upsertOwners("localhost", "dogs_and_owners", "root", "", owners);
+
+        refreshTables();
     }
     @FXML
     protected void onButton2Click() {
